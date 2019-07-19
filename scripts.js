@@ -21,22 +21,37 @@ You can assume that the messages are decodable. For example, '001' is not allowe
   Note, only pairs of numbers are valid.  No single letter value has a value more than 26.  The easiest way to do this is to split the number into all single digits, then in a loop piece together the index number and the next one.  If it is legal, run a subloop to capture all other possibilties.
 
   b.  Count the number of ways it is decoded.  We note the problem is complicated because not all possible pairs are letters, ie only pairs between 1-26 are valid.  Discard the non-legal pairs.  The leftover count is the valid number of ways it can be counted.
+
+  c.  Another way to reword the problem is to say:  find all possible serial pair combinations that are between 1-26.
 */
 
 const convertNumberToArray = (number) => {
   let temp = number.toString().split("");
-  let output = [];
-  for (i = 0; i < temp.length; i++) {
-    output.push(parseInt(temp[i],10))
+  // let output = [];
+  // for (i = 0; i < temp.length; i++) {
+  //   output.push(parseInt(temp[i],10))
+  // }
+  //return output;
+  return temp;
+}
+
+const decodeNumber = (number) => {
+  let count = number.length;
+  let output = number;
+  for (i = 0; i < number.length; i++) {
+    if (parseInt(number[i]+number[i+1],10)<27) {
+      output.push(number[i]+number[i+1]);
+    }
   }
   return output;
 }
 
-console.log('test var = 123456', convertNumberToArray(123456));
-
-const decodeNumber = (number) => {
-  output = [];
-}
+const testNum = 1234
+const testNumArray = convertNumberToArray(testNum);
+const final = decodeNumber(testNumArray);
+console.log('testNum = ',testNum);
+console.log('array = ', testNumArray);
+console.log('decode = ', final);
 
 $(document).ready(function() {
   $('#output-section-1').text(1);

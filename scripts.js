@@ -10,13 +10,16 @@ For example, the message '111' would give 3, since it could be decoded as 'aaa',
 You can assume that the messages are decodable. For example, '001' is not allowed.
 */
 
-const makeRandomNumber = () => {
-  return Math.ceil(Math.random()*10);
-}
+//Assume that numbered "pairs" can only be 1 through 26.
+
+/*The problem consists of two parts:
+  a.  dividing up the number string into all possible singles and pairs.
+  b.  converting the ASCII value into a number.  (use: 'a'.charCodeAt(0)-96 for lowercase.)
+*/
 
 $(document).ready(function() {
-  $('#output-section-1').text(JSON.stringify(testList));
-  $('#output-section-2').text(1);
-  $('#output-section-3').text(2);
-  $('#output-section-4').text(3);
+  $('#output-section-1').text(1);
+  $('#output-section-2').text(2);
+  $('#output-section-3').text(3);
+  $('#output-section-4').text(4);
   });

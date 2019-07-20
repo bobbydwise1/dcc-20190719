@@ -70,20 +70,26 @@ const convertNumberToArray = (number) => {
 
 const decodeNumber = (number) => {
   let count = number.length;
+  let final = [];
   let output = [];
+  for (i=0;i<number.length;i++) {
+    output.push(number[i]);
+  }
+  final.push(output);
+  output = [];
   for (i = 0; i < number.length; i++) {
-    console.log('loop#',i);
     if (isNaN(number[i+1]) === false) {
       if (parseInt(number[i]+number[i+1],10) < 27) {
         output.push(number[i]+number[i+1])
         i++
+//It seems like you have to repeat the above the code for whats left.....
       } else {
         output.push(number[i]);
       };
     };
-    console.log('output = ',output)
   }
-  return output;
+  final.push(output)
+  return final;
 }
 
 const testNum = 11523

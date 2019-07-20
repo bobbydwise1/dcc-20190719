@@ -36,18 +36,32 @@ const convertNumberToArray = (number) => {
 }
 
 const decodeNumber = (number) => {
-  let output = number;
+  let count = number.length;
+  let output = [];
   for (i = 0; i < number.length; i++) {
-
+    console.log('loop#',i);
+    if (i >= number.length) {output.push(number[i-1]); break;}
+    if (isNaN(number[i+1]) === false) {
+      if (parseInt(number[i]+number[i+1],10) < 27) {
+        output.push(number[i]+number[i+1])
+        i++
+      } else {
+        output.push(number[i]);
+      };
+    };
+    console.log('output = ',output)
   }
   return output;
 }
 
-const testNum = 12345
+const testNum = 111
 console.log('testNum = ',testNum);
+
 const testNumArray = convertNumberToArray(testNum);
 console.log('array = ', testNumArray);
+
 const final = decodeNumber(testNumArray);
+
 console.log('testNum = ',testNum);
 console.log('array = ', testNumArray);
 console.log('decode = ', final);

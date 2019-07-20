@@ -68,6 +68,14 @@ const convertNumberToArray = (number) => {
   return temp;
 }
 
+const reJoin = (arrayString) => {
+  let output = "";
+  for (i=0; i<arrayString.length; i++) {
+    output = output+arrayString[i];
+  };
+  return output;
+}
+
 const decodeNumber = (number) => {
   let output = [];
   for (i = 0; i < number.length; i++) {
@@ -89,11 +97,17 @@ console.log('testNum = ',testNum);
 const testNumArray = convertNumberToArray(testNum);
 console.log('array = ', testNumArray);
 
-const final = decodeNumber(testNumArray);
+const final1 = decodeNumber(testNumArray);
 
-console.log('testNum = ',testNum);
-console.log('array = ', testNumArray);
-console.log('decode = ', final);
+console.log('final1 = ', final1);
+
+const final2 = decodeNumber(reJoin(final1.slice(1,final1.length)));
+
+console.log('final2 = ', final2);
+
+const final3 = decodeNumber(reJoin(final2.slice(1,final2.length)));
+
+console.log('final3 = ', final3);
 
 $(document).ready(function() {
   $('#output-section-1').text(1);

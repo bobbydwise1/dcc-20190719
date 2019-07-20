@@ -109,6 +109,10 @@ const final3 = decodeNumber(reJoin(final2.slice(1,final2.length)));
 
 console.log('final3 = ', final3);
 
+const final4 = decodeNumber(convertNumberToArray(115));
+
+console.log('final4 = ', final4);
+
 $(document).ready(function() {
   $('#output-section-1').text(1);
   $('#output-section-2').text(2);

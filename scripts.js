@@ -75,7 +75,6 @@ const decodeNumber = (number) => {
       if (1*(number[i]+number[i+1])< 27) {
         output.push(number[i]+number[i+1])
         i=i+1;
-        output.push(decodeNumber(number.slice(i,number.length)));
       } else {
         output.push(number[i]);
       };
@@ -84,7 +83,7 @@ const decodeNumber = (number) => {
   return output;
 }
 
-const testNum = 11523
+const testNum = 11523;
 console.log('testNum = ',testNum);
 
 const testNumArray = convertNumberToArray(testNum);

@@ -36,18 +36,17 @@ const convertNumberToArray = (number) => {
 }
 
 const decodeNumber = (number) => {
-  let count = number.length;
   let output = number;
   for (i = 0; i < number.length; i++) {
-    if (parseInt(number[i]+number[i+1],10)<27) {
-      output.push(number[i]+number[i+1]);
-    }
+
   }
   return output;
 }
 
-const testNum = 1234
+const testNum = 12345
+console.log('testNum = ',testNum);
 const testNumArray = convertNumberToArray(testNum);
+console.log('array = ', testNumArray);
 const final = decodeNumber(testNumArray);
 console.log('testNum = ',testNum);
 console.log('array = ', testNumArray);

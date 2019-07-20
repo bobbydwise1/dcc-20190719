@@ -12,17 +12,50 @@ You can assume that the messages are decodable. For example, '001' is not allowe
 
 //Assume that numbered "pairs" can only be 1 through 26.
 
-/*The problem consists of two parts that are related:
-  a.  dividing up the number string into all possible singles and pairs.  Determine the pattern, using example numbers:
-    1.  f('1') = {[1]}
-    2.  f('12') = {[1], [2], [12]}
-    3.  f('123') = {[1], [2], [3], [12], [23], [123]}
-    4.  f('1234') = [1], [2], [3], [4], [12], [23], [34], [123], [234], [1234]}
-  Note, only pairs of numbers are valid.  No single letter value has a value more than 26.  The easiest way to do this is to split the number into all single digits, then in a loop piece together the index number and the next one.  If it is legal, run a subloop to capture all other possibilties.
+/*
 
-  b.  Count the number of ways it is decoded.  We note the problem is complicated because not all possible pairs are letters, ie only pairs between 1-26 are valid.  Discard the non-legal pairs.  The leftover count is the valid number of ways it can be counted.
+example:
 
-  c.  Another way to reword the problem is to say:  find all possible serial pair combinations that are between 1-26.
+11523....
+
+[1,1,5,2,3]
+[11,5,23]
+[1,1,5,23]
+[11,5,2,3]
+[1,15,23]
+[1,15,2,3]
+
+step1 - shift through each single digit = easy
+[1,1,5,2,3]
+subcount = 5;
+
+step2 - attempt 1st pairs
+[11].... eleven is valid first pairs
+
+step2a - subloop - look at whats left, and see the valid pairs
+[5,2,3]
+[5,23]
+... that is all.  so we have [11,5,2,3] and [11,5,23]
+subcount = 5+2 = 7
+
+Step3 - next index - check if the next number and the previous are a valid letter.  We note that yes, 15 is valid.  So we have a new subloop:
+[1,15]
+
+Step3a - subloop - check the remainder for valid pairs
+[2,3]
+[23]
+... that is all. so we have [1,15,2,3] and [1,15,23]
+subcount = 7+2 = 9
+
+Step4 - we keep going, and note we don't find valid pair until 23...
+[23]
+We note that this is at the end of the array.  Chop the end of the array off and check all valid combos:
+[1,1,5]
+[11,5]
+[1,15]
+Note that we already did the last two combos.... [11,5,23] & [1,15,23] there is really only 1 combo left.... [1,1,5,23]
+subcount = 9+1 = 10
+
 */
 
 const convertNumberToArray = (number) => {
@@ -40,7 +73,6 @@ const decodeNumber = (number) => {
   let output = [];
   for (i = 0; i < number.length; i++) {
     console.log('loop#',i);
-    if (i >= number.length) {output.push(number[i-1]); break;}
     if (isNaN(number[i+1]) === false) {
       if (parseInt(number[i]+number[i+1],10) < 27) {
         output.push(number[i]+number[i+1])
@@ -54,7 +86,7 @@ const decodeNumber = (number) => {
   return output;
 }
 
-const testNum = 111
+const testNum = 11523
 console.log('testNum = ',testNum);
 
 const testNumArray = convertNumberToArray(testNum);
